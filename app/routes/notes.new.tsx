@@ -50,7 +50,7 @@ export default function NewNotePage() {
             name="body"
             rows={8}
             className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
-          ></textarea>
+          />
         </label>
       </div>
 
