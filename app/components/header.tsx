@@ -31,19 +31,11 @@ const products = [
   { name: 'Notes', description: 'Organize shit with notes', href: '/notes', icon: ChartPieIcon },
   { name: 'Metar', description: 'Check METAR', href: '/metar', icon: CursorArrowRaysIcon },
   { name: 'TicTacToe', description: 'A Game', href: '/tictactoe', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
 ]
 const callsToAction = [
   { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
   { name: 'Contact sales', href: '#', icon: PhoneIcon },
 ]
-
-// export async function loader ({ request }: LoaderFunctionArgs) {
-//   const userId = await requireUserId(request);
-//   return json({ userId });
-// }
-
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -118,12 +110,6 @@ export default function Header() {
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Features
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
-          </a>
         </PopoverGroup>
         { user && (
           <Form action="/logout" method="post">
@@ -190,18 +176,6 @@ export default function Header() {
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Features
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Company
                 </a>
               </div>
               <div className="py-6">
