@@ -9,9 +9,10 @@ import RangeSlider from "~/components/range-slider";
 export const action: ActionFunction = async ({ request }) => {
     const formData = await request.formData();
     const icao = formData.get("icao") as string;
+    const hours = formData.get("hours") as string;
     console.log('icao:', icao);
 
-    const metar: MetarResponse = await getSingleMetar(icao);
+    const metar: MetarResponse = await getSingleMetar(icao, hours);
 
     console.log('metar:', metar);
 
@@ -22,6 +23,7 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Metar() {
     const metarData = useActionData<MetarResponse>();
     console.log('metarData:', metarData);
+    const first = metarData?.[0];
     return (
         <div className="w-2/3 mx-auto">
             <div className="md:flex md:items-center md:justify-between mb-8">
@@ -44,10 +46,7 @@ export default function Metar() {
                         placeholder="KSAC"
                         className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
-                    <RangeSlider
-                        title="Hours before now"
-                        initialValue={2}
-                    />
+                   <RangeSlider initialHours="2" name="hours" /> 
                 </div>
 
                 <Button type="submit" className="mt-4">
@@ -56,9 +55,12 @@ export default function Metar() {
                 </Button>
             </Form>
             <div id="metar">
+                
+                {first && (
+                    <h3 className="text-lg font-semibold text-gray-900">METAR for {first.name}</h3>
+                )}
                 {metarData?.map((metar) => (
                     <div key={metar.metar_id} className="mt-8">
-                        <h3 className="text-lg font-semibold text-gray-900">METAR for {metar.name}</h3>
                         <p className="text-sm text-gray-600">Reported at {metar.reportTime}</p>
                         <div className="mt-2">
                             <p className="text-sm text-gray-600">Temperature: {metar.temp}°C</p>

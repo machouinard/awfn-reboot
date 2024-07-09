@@ -95,7 +95,7 @@ export default function Game() {
             description = `Go to move #${move}`;
             action = 'no';
         } else {
-            description = 'Go to game start';
+            description = 'New Game';
             action = 'restart';
         }
         return (
