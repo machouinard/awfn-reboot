@@ -73,3 +73,21 @@ export async function getNote({
 
   return null;
 }
+
+export async function updateNote({
+  id,
+  title,
+  body,
+}: Pick<Note, "id" | "title" | "body">) {
+  const { data, error } = await supabase
+    .from("notes")
+    .update({ title, body })
+    .eq("id", id)
+    .select();
+
+  if (!error) {
+    return data;
+  }
+
+  return null;
+}
